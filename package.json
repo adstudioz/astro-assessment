@@ -7,6 +7,7 @@
     "build": "nuxt-ts build",
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate",
+    "deploy": "gh-pages -d dist",
     "format": "stylelint \"**/*.{vue,css}\" --fix",
     "lint": "eslint \"**/*.{ts,vue}\" prettier.config.js stylelint.config.js --fix",
     "test": "jest"
@@ -39,6 +40,7 @@
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-nuxt": "1.0.0",
     "eslint-plugin-prettier": "3.1.4",
+    "gh-pages": "^3.1.0",
     "jest": "26.1.0",
     "pino": "6.6.1",
     "prettier": "2.1.1",
