@@ -1,9 +1,25 @@
 module.exports = {
+  root: true,
+  env: {
+    node: true,
+  },
   extends: [
-    '@nuxtjs',
-    'plugin:nuxt/recommended',
-    '@nuxtjs/eslint-config-typescript',
+    "plugin:vue/recommended",
+    "eslint:recommended",
+    "prettier/vue",
+    "plugin:prettier/recommended",
+    'plugin:vue/essential',
+    'eslint:recommended',
+    '@vue/typescript/recommended',
     '@vue/prettier',
-    '../.eslintrc.js',
+    '@vue/prettier/@typescript-eslint',
   ],
+  parserOptions: {
+    ecmaVersion: 2020,
+  },
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+  },
 };

@@ -1,4 +1,4 @@
-const host =  "0.0.0.0";
+const host = '0.0.0.0';
 const port = 3002;
 
 export default {
@@ -7,40 +7,40 @@ export default {
    ** See https://nuxtjs.org/api/configuration-mode
    */
   mode: 'spa',
-  router: {
-     base: '/astro-assessment/'
-   },
+  // router: {
+  //    base: '/astro-assessment/'
+  //  },
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
    */
-  target: "static",
+  target: 'static',
   /*
    ** Headers of the page
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    title: process.env.npm_package_name || "",
+    title: process.env.npm_package_name || '',
     meta: [
-      { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
-        hid: "description",
-        name: "description",
-        content: process.env.npm_package_description || "",
+        hid: 'description',
+        name: 'description',
+        content: process.env.npm_package_description || '',
       },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   /*
    ** Global CSS
    */
-  css: ["@/assets/css/main.css"],
+  css: ['@/assets/scss/main.scss', '@/assets/css/main.css'],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ["@/plugins/lodash.ts", "@/plugins/dayjs.ts", "@/plugins/pino.ts"],
+  plugins: ['@/plugins/lodash.ts', '@/plugins/dayjs.ts', '@/plugins/pino.ts'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -50,26 +50,30 @@ export default {
    ** Nuxt.js dev-modules
    */
   buildModules: [
-    "@nuxt/typescript-build",
+    '@nuxt/typescript-build',
     // Doc: https://github.com/nuxt-community/stylelint-module
-    "@nuxtjs/stylelint-module",
-    "@nuxtjs/tailwindcss",
+    '@nuxtjs/stylelint-module',
+    '@nuxtjs/tailwindcss',
   ],
   /*
    ** Nuxt.js modules
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    "@nuxtjs/axios",
+    '@nuxtjs/axios',
     // Doc: https://github.com/nuxt/content
-    "@nuxt/content",
+    '@nuxt/content',
+    '@nuxtjs/style-resources',
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: "https://contenthub-api.eco.astro.com.my",
+    baseURL: 'https://contenthub-api.eco.astro.com.my',
+  },
+  styleResources: {
+    scss: ['./assets/scss/main.scss'],
   },
   /*
    ** Content module configuration

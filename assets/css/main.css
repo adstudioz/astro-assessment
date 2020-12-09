@@ -1,15 +1,5 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
-@import url("https://fonts.googleapis.com/css?family=Montserrat:200,400,600&display=swap");
-
-button {
-  padding: 10px;
-  background: tomato;
-  border-radius: 6px;
-}
-
-input {
-  background-color: aliceblue;
+body {
+  font-family: 'Roboto', sans-serif;
 }
