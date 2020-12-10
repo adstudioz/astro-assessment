@@ -1,7 +1,13 @@
-# Astro
+# Astro Assesment (1.0.0)
+
+## Resources use:
+### Nuxtjs v-2.14.4
+### dayjs v-1.8.17
+### loadash v-4.17.11
+### axios v-5.12.2
+### tailwindcss v-3.3.3
 
 ## Build Setup
-
 ```bash
 # install dependencies
 $ yarn install
