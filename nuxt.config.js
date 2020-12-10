@@ -7,9 +7,9 @@ export default {
    ** See https://nuxtjs.org/api/configuration-mode
    */
   mode: 'spa',
-  // router: {
-  //    base: '/astro-assessment/'
-  //  },
+  router: {
+     base: '/astro-assessment/'
+   },
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target

@@ -6,6 +6,7 @@ $red: #ea148c;
 $gray-1: #d9d9d9;
 $gray-2: #f6f6f6;
 $gray-3: #dedede;
+$gray-4: #ededed;
 $gray: #d9d9d9;
 $black: #0e0f0e;
 $white: #fff;
@@ -96,6 +97,10 @@ input {
     border-radius: 6px;
     min-height: 200px;
     cursor: pointer;
+  }
+
+  .channel-loading {
+    background: $gray-4;
   }
 
   .channel-info {

@@ -2,57 +2,70 @@
   <div>
     <Header />
     <div class="container">
-      <div v-if="channel">
-        <div class="flex mb-20">
-          <img
-            class="w-100 mr-20"
-            :src="channel.imageUrl"
-            :alt="`${channel.title} logo`"
-          />
+      <div v-if="!isLoading">
+        <div v-if="channel">
+          <div class="flex mb-20">
+            <img
+              class="w-100 mr-20"
+              :src="channel.imageUrl"
+              :alt="`${channel.title} logo`"
+            />
+            <div>
+              <p class="text-20 font-light">{{ channel.title }}</p>
+              <p class="text-20 font-medium">CH{{ channel.stbNumber }}</p>
+            </div>
+          </div>
+          <div class="mb-50 w-full max-w-500">
+            <p>{{ channel.description }}</p>
+          </div>
+          <div></div>
+          <div class="flex mb-20">
+            <div
+              @click="updateCurrentDay(day.index)"
+              class="mr-20 cursor-pointer"
+              v-for="(day, index) in days"
+              :key="index"
+            >
+              <p
+                class="text-14 text-red-100 md:text-20 font-bold"
+                v-if="day.index === currentDay && day.value === today"
+              >
+                TODAY
+              </p>
+              <p
+                class="text-14 text-red-100 md:text-20 font-bold"
+                v-else-if="day.index === currentDay"
+              >
+                {{ day.value }}
+              </p>
+              <p
+                class="text-14 md:text-20 font-light hover:text-red-100"
+                v-else
+              >
+                {{ day.value }}
+              </p>
+            </div>
+          </div>
           <div>
-            <p class="text-20 font-light">{{ channel.title }}</p>
-            <p class="text-20 font-medium">CH{{ channel.stbNumber }}</p>
-          </div>
-        </div>
-        <div class="mb-50 w-full max-w-500">
-          <p>{{ channel.description }}</p>
-        </div>
-        <div></div>
-        <div class="flex mb-20">
-          <div
-            @click="updateCurrentDay(day.index)"
-            class="mr-20 cursor-pointer"
-            v-for="(day, index) in days"
-            :key="index"
-          >
-            <p
-              class="text-14 text-red-100 md:text-20 font-bold"
-              v-if="day.index === currentDay && day.value === today"
+            <div
+              class="flex mb-14"
+              v-for="(schedule, index) in currentSchedule"
+              :key="index"
             >
-              TODAY
-            </p>
-            <p
-              class="text-14 text-red-100 md:text-20 font-bold"
-              v-else-if="day.index === currentDay"
-            >
-              {{ day.value }}
-            </p>
-            <p class="text-14 md:text-20 font-light hover:text-red-100" v-else>
-              {{ day.value }}
-            </p>
+              <p class="mr-30 text-gray-200 text-14">
+                {{ getTime(schedule.datetime) }}
+              </p>
+              <p class="text-14">{{ schedule.title }}</p>
+            </div>
           </div>
         </div>
-        <div>
-          <div
-            class="flex mb-14"
-            v-for="(schedule, index) in currentSchedule"
-            :key="index"
-          >
-            <p class="mr-30 text-gray-200 text-14">
-              {{ getTime(schedule.datetime) }}
-            </p>
-            <p class="text-14">{{ schedule.title }}</p>
-          </div>
+        <div class="w-full flex items-center mt-100 flex-col" v-else>
+          <img
+            class="w-300"
+            src="@/assets/image/img_not_found.svg"
+            alt="not found"
+          />
+          <p class="mt-30 text-14">No channel found</p>
         </div>
       </div>
     </div>
@@ -121,11 +134,16 @@ export default class ChannelPage extends Vue {
 
   async fetchChannel() {
     this.isLoading = true;
-    const data: Data = (
-      await this.$axios.get(`/channel/${this.channelId}.json`)
-    ).data;
 
-    this.channel = data.response;
+    let data: Data | null = null;
+
+    try {
+      data = (await this.$axios.get(`/channel/${this.channelId}.json`)).data;
+    } catch (error) {}
+
+    if (data && data.response) {
+      this.channel = data.response;
+    }
 
     this.getSchedule();
 

@@ -148,10 +148,27 @@
               <p>language: {{ channel.language }}</p>
               <p>resolution: {{ `${channel.isHd ? 'HD' : 'SD'}` }}</p> -->
             </NuxtLink>
-            <div class="w-200 m-20 p-20"></div>
-            <div class="w-200 m-20 p-20"></div>
-            <div class="w-200 m-20 p-20"></div>
-            <div class="w-200 m-20 p-20"></div>
+            <div class="p-10 channel"></div>
+            <div class="p-10 channel"></div>
+            <div class="p-10 channel"></div>
+            <div class="p-10 channel"></div>
+          </div>
+          <div class="w-full flex items-center mt-100 flex-col" v-else>
+            <img
+              class="w-300"
+              src="@/assets/image/img_not_found.svg"
+              alt="not found"
+            />
+            <p class="mt-30 text-14">No channel found. Try search again.</p>
+          </div>
+        </div>
+        <div v-else class="flex flex-wrap justify-between">
+          <div
+            v-for="loadingContainer in loadingContainers"
+            :key="loadingContainer"
+            class="p-10 channel"
+          >
+            <div class="channel-container p-20 channel-loading"></div>
           </div>
         </div>
       </div>
@@ -312,6 +329,8 @@ export default class Index extends Vue {
   @Provide() selectedCategories: string[] = [];
   @Provide() selectedLanguages: string[] = [];
   @Provide() selectedResolutions: string[] = [];
+
+  @Provide() loadingContainers: number[] = [...Array(10).keys()];
 
   async created() {
     await this.fetchChannels();
